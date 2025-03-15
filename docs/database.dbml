@@ -1,0 +1,68 @@
+Project "math-telegram-bot" {
+  database_type: 'SQLite'
+  Note: 'Telegram Bot for Mathematic Association of Shahid Madani University of Azarbaijan'
+}
+
+Table user {
+  id id [pk, increment]
+  first_name varchar(50)
+  last_name varchar(50)
+  student_id int [unique]
+  phone varchar(11)
+  major int [ref: > major.id, not null, default: 'math']
+  type user_types [default: 'student']
+}
+
+Enum user_types {
+  "student"
+  "admin"
+  "owner"
+}
+
+Table major {
+  id int [pk, increment]
+  name varchar(100) [unique]
+}
+
+Table match {
+  id int [pk, increment]
+  start timestamp [not null]
+  end timestamp [not null]
+  score_threshold positive_int [not null]
+}
+
+Table question {
+  id int [pk, increment]
+  text string
+  img uri [null]
+  pdf uri [null]
+  has_choices bool [default: true, not null]
+  score positive_int [not null]
+  match_id int [ref: > match.id, not null]
+}
+
+Table choice_answer {
+  id int [pk, increment]
+  text string
+  question_id int [ref: > question.id, not null]
+  img uri [null]
+  pdf uri [null]
+  is_correct bool [default: null]
+}
+
+Table participant {
+  id int [pk, increment]
+  user_id int [ref: > user.id, not null]
+  matth_id int [ref: > match.id, not null]
+}
+
+Table participant_answers {
+  id int [pk, increment]
+  participant_id int [ref: > participant.id, not null]
+  question_id int [ref: > question.id, not null]
+  choice_answer_id int [ref: > choice_answer.id]
+  img uri [null]
+  pdf uri [null]
+  is_apporved bool [default: false, not null]
+  is_correct bool [default: false, not null]
+}
