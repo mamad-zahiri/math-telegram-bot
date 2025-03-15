@@ -5,7 +5,10 @@ description = ""
 authors = [{ name = "Mamad Zahiri", email = "mamadzhri@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pytelegrambotapi (>=4.26.0,<5.0.0)",
+    "peewee (>=3.17.9,<4.0.0)",
+]
 
 [tool.poetry]
 packages = [{ include = "math_telegram_bot", from = "src" }]
