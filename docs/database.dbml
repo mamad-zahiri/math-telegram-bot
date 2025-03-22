@@ -24,7 +24,7 @@ Table major {
   name varchar(100) [unique]
 }
 
-Table match {
+Table competition {
   id int [pk, increment]
   start timestamp [not null]
   end timestamp [not null]
@@ -38,7 +38,7 @@ Table question {
   pdf uri [null]
   has_choices bool [default: true, not null]
   score positive_int [not null]
-  match_id int [ref: > match.id, not null]
+  competition_id int [ref: > competition.id, not null]
 }
 
 Table choice_answer {
@@ -53,7 +53,7 @@ Table choice_answer {
 Table participant {
   id int [pk, increment]
   user_id int [ref: > user.id, not null]
-  matth_id int [ref: > match.id, not null]
+  competition_id int [ref: > competition.id, not null]
 }
 
 Table participant_answers {
