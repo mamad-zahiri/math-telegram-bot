@@ -8,6 +8,7 @@ Table user {
   first_name varchar(50)
   last_name varchar(50)
   student_id int [unique]
+  password varchar(64) [note: 'password is saved as SHA256']
   phone varchar(11)
   major int [ref: > major.id, not null, default: 'math']
   type user_types [default: 'student']
