@@ -23,6 +23,7 @@ class Settings(BaseSettings, case_sensitive=False):
     )
 
     BOT_TOKEN: Annotated[str | None, PlainValidator(_validate_token)] = None
+    ENCRYPTION_KEY: str
     DB_CLASS: type[Database] = DB_CLASS
     DB_NAME: str
     __DB_OBJECT: Database | None = None
