@@ -19,3 +19,43 @@ packages = [{ include = "math_telegram_bot", from = "src" }]
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+src = ["."]
+line-length = 100
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+    "N",
+    # "D",
+    "ANN",
+    "ICN",
+    "COM",
+    "LOG",
+    "G",
+    "SIM",
+    "ERA",
+    "PL",
+    "FAST",
+    "RET",
+    "RUF",
+    "TID",
+]
+ignore = ["ANN001", "D407", "D413", "D406"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 100
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+line_length = 100
