@@ -3,7 +3,9 @@ from telebot.states.sync.middleware import StateMiddleware
 
 from src.db.utils import create_tables
 from src.handlers.commons import bot
-from src.handlers.login_handlers import *
+
+# load handlers
+from src.handlers.new_competirion_handers import *  # noqa: F403
 
 if __name__ == "__main__":
     create_tables()
